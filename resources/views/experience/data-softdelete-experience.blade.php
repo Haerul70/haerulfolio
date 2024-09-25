@@ -1,18 +1,18 @@
 @extends('layouts-admin.main-layout')
 
-@section('title', 'Data Experience')
+@section('title', 'Data Experience Softdelete')
 
-@section('page-title', 'Data Experience')
+@section('page-title', 'Data Experience Softdelete')
 
 @section('content')
 
     <div class="row">
         <div class="col-12">
             <div class="card mb-4">
-                <div class="card-body pb-2">
+                <div class="card-body">
                     <!-- Button trigger modal -->
                     <div class="d-flex justify-content-start">
-                        <a href="{{ route('experience.data-experiences') }}" class="btn btn-primary">Data Experience</a>
+                        <a href="{{ route('experience.data-experiences') }}" class="btn btn-primary p-2">Data Experience</a>
                     </div>
                 </div>
             </div>
@@ -23,11 +23,11 @@
         <div class="col-12">
             <div class="card mb-4">
                 <div class="card-header pb-0">
-                    <h6>Data Experiences</h6>
+                    <h6>Data Experience Softdelete</h6>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table align-items-center" id="myData">
+                        <table class="table table-bordered bs-gray-dark text-white" id="datatable" style="width:100%;">
                             <thead>
                                 <tr>
                                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
@@ -50,21 +50,21 @@
                             <tbody>
                                 @forelse ($dataExperience as $experience)
                                     <tr>
-                                        <td class="text-secondary text-center font-weight-bold text-xs">
+                                        <td class="text-center">
                                             {{ $loop->iteration }}</td>
-                                        <td class="text-secondary font-weight-bold text-xs">
+                                        <td>
                                             {{ $experience->service->title }}
                                         </td>
-                                        <td class="text-secondary font-weight-bold text-xs">
+                                        <td>
                                             {{ $experience->company }}
                                         </td>
-                                        <td class="text-secondary font-weight-bold text-xs">
+                                        <td>
                                             {{ $experience->start_date }}
                                         </td>
-                                        <td class="text-secondary font-weight-bold text-xs">
+                                        <td>
                                             {{ $experience->end_date }}
                                         </td>
-                                        <td class="text-secondary font-weight-bold text-xs">
+                                        <td>
                                             {{ $experience->description }}
                                         </td>
                                         <td class="align-middle">

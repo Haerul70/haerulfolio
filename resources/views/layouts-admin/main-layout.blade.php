@@ -11,20 +11,25 @@
     @include('layouts-admin.styles')
 </head>
 
-<body class="g-sidenav-show   bg-gray-100">
-    <div class="min-height-300 bg-primary position-absolute w-100"></div>
+<body>
+    <!-- LOADERS -->
+    <div class="loader-bg">
+        <div class="loader"></div>
+    </div>
 
-    @include('layouts-admin.sidebar')
+    <div class="container-scroller">
 
-    <main class="main-content position-relative border-radius-lg ">
+        @include('layouts-admin.sidebar')
 
-        @include('layouts-admin.navbar')
+        <div class="container-fluid page-body-wrapper">
 
-        @include('layouts-admin.content')
+            @include('layouts-admin.navbar')
 
-        @include('layouts-admin.script')
+            @include('layouts-admin.content')
 
-    </main>
+        </div>
+    </div>
+    @include('layouts-admin.script')
 </body>
 
 </html>

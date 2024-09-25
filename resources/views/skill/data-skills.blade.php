@@ -9,12 +9,12 @@
     <div class="row">
         <div class="col-12">
             <div class="card mb-4">
-                <div class="card-body pb-2">
+                <div class="card-body">
                     <!-- Button trigger modal -->
-                    <a href="{{ route('skill.create-data-skill') }}" class="btn btn-primary me-3" data-bs-toggle="modal"
+                    <a href="{{ route('skill.create-data-skill') }}" class="btn btn-primary p-2 me-3" data-bs-toggle="modal"
                         data-bs-target="#createDataSkillModal">Add New
                         Data</a>
-                    <a href="{{ route('skill.data-softdelete-skill') }}" class="btn btn-secondary">Data SoftDelete</a>
+                    <a href="{{ route('skill.data-softdelete-skill') }}" class="btn btn-warning p-2">Data SoftDelete</a>
                 </div>
             </div>
         </div>
@@ -28,7 +28,7 @@
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table align-items-center" id="myData">
+                        <table class="table table-bordered bs-gray-dark text-white" id="datatable" style="width:100%;">
                             <thead>
                                 <tr>
                                     <th
@@ -46,11 +46,11 @@
                             <tbody>
                                 @forelse ($dataSkill as $skill)
                                     <tr>
-                                        <td class="text-secondary text-center font-weight-bold text-xs">
+                                        <td class="text-center">
                                             {{ $loop->iteration }}</td>
-                                        <td class="text-secondary font-weight-medium text-xs">
+                                        <td>
                                             {{ $skill->skills_type->type }}
-                                        <td class="text-secondary font-weight-medium text-xs">
+                                        <td>
                                             {{ $skill->title }}
                                         </td>
                                         <td class="align-middle">

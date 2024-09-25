@@ -1,19 +1,19 @@
 @extends('layouts-admin.main-layout')
 
-@section('title', 'Data Portfolios')
+@section('title', 'Data Portfolio')
 
-@section('page-title', 'Data Portfolios')
+@section('page-title', 'Data Portfolio')
 
 @section('content')
 
     <div class="row">
         <div class="col-12">
             <div class="card mb-4">
-                <div class="card-body pb-0">
-                    <div class="d-flex justify-content-start mb-3">
-                        <a href="{{ route('portfolio.create-data-portfolio') }}" class="btn btn-primary me-3"
+                <div class="card-body">
+                    <div class="d-flex justify-content-start">
+                        <a href="{{ route('portfolio.create-data-portfolio') }}" class="btn btn-primary p-2 me-3"
                             data-bs-toggle="modal" data-bs-target="#createDataPortfolioModal">Add New Portfolio</a>
-                        <a href="{{ route('portfolio.data-softdelete-portfolio') }}" class="btn btn-secondary me-3">Data
+                        <a href="{{ route('portfolio.data-softdelete-portfolio') }}" class="btn btn-warning p-2 me-3">Data
                             SoftDelete</a>
                     </div>
                 </div>
@@ -24,12 +24,12 @@
     <div class="row">
         <div class="col-12">
             <div class="card mb-4">
-                <div class="card-header pb-0">
+                <div class="card-header">
                     <h6>Data Portfolios</h6>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table align-items-center" id="myData">
+                        <table class="table table-bordered bs-gray-dark text-white" id="datatable" style="width:100%;">
                             <thead>
                                 <tr>
                                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
@@ -51,18 +51,18 @@
                             <tbody>
                                 @forelse ($dataPortfolio as $portfolio)
                                     <tr>
-                                        <td class="text-secondary text-center font-weight-bold text-xs">
+                                        <td class="text-center">
                                             {{ $loop->iteration }}</td>
-                                        <td class="text-secondary font-weight-bold text-xs">
+                                        <td>
                                             {{ $portfolio->service->title }}
                                         </td>
-                                        <td class="text-secondary font-weight-bold text-xs">
+                                        <td>
                                             {{ $portfolio->title }}
                                         </td>
-                                        <td class="text-secondary font-weight-bold text-xs">
+                                        <td>
                                             {!! Purifier::clean($portfolio->description) !!}
                                         </td>
-                                        <td class="text-secondary font-weight-bold text-xs">
+                                        <td>
                                             {{ $portfolio->project_url }}
                                         </td>
 
@@ -97,11 +97,10 @@
         </div>
     </div>
 
-    @include('portfolio.create-data-portfolio');
+    @include('portfolio.create-data-portfolio')
 
     @foreach ($dataPortfolio as $portfolio)
         @include('portfolio.edit-data-portfolio')
         @include('portfolio.delete-data-portfolio')
     @endforeach
-
 @endsection

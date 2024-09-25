@@ -9,13 +9,13 @@
     <div class="row">
         <div class="col-12">
             <div class="card mb-4">
-                <div class="card-body pb-2">
+                <div class="card-body">
                     <!-- Button trigger modal -->
                     <div class="d-flex justufy-content-start">
-                        <a href="{{ route('service.create-data-services') }}" class="btn btn-primary me-3"
+                        <a href="{{ route('service.create-data-services') }}" class="btn btn-primary p-2 me-3"
                             data-bs-toggle="modal" data-bs-target="#createDataServiceModal">Add New
                             Data</a>
-                        <a href="{{ route('service.data-softdelete-services') }}" class="btn btn-secondary">Data
+                        <a href="{{ route('service.data-softdelete-services') }}" class="btn btn-warning p-2">Data
                             SoftDelete</a>
                     </div>
                 </div>
@@ -30,8 +30,8 @@
                     <h6>Data Services</h6>
                 </div>
                 <div class="card-body">
-                    <div class="table-responsive p-0">
-                        <table class="table align-items-center mb-0" id="myData">
+                    <div class="table-responsive">
+                        <table class="table table-bordered bs-gray-dark text-white" id="datatable" style="width:100%;">
                             <thead>
                                 <tr>
                                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
@@ -48,13 +48,13 @@
                             <tbody>
                                 @forelse ($dataService as $service)
                                     <tr>
-                                        <td class="text-secondary text-center font-weight-bold text-xs">
+                                        <td class="text-center">
                                             {{ $loop->iteration }}
                                         </td>
-                                        <td class="text-secondary font-weight-bold text-xs">
+                                        <td>
                                             {{ $service->title }}
                                         </td>
-                                        <td class="text-secondary font-weight-bold text-xs">
+                                        <td>
                                             {!! Purifier::clean($service->description) !!}
                                         </td>
                                         <td class="align-middle">

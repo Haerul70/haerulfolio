@@ -20,9 +20,9 @@ class IndexController extends Controller
         $skillsSoftware = Skill::where('skills_type_id', 3)->get();
         $abouts = About::with('user')->first();
         $portfolioAll = Portfolio::with('service')->get();
-        $experiences = Experience::with('service')->get();
+        $experiences = Experience::with('service')->orderBy('end_date', 'desc')->get();
         $services = Service::where('id', '!=', 6)->get();
-        $educations = Education::all();
+        $educations = Education::orderBy('end_date', 'desc')->get();
 
         return view('index', compact('skillsTechnical', 'skillsNonTechnical', 'skillsSoftware', 'abouts', 'portfolioAll', 'experiences', 'services', 'educations'));
     }

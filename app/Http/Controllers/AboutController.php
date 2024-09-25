@@ -12,16 +12,16 @@ class AboutController extends Controller
 {
     public function index()
     {
-        $about = About::with('user')->first();
+        $about = About::with('user')->get();
 
         return view('welcome', compact('about'));
     }
     public function showDataAbout()
     {
         $dataUser = User::all();
-        $dataAbout = About::orderBy('created_at', 'desc')->get();
+        $about = About::orderBy('created_at', 'desc')->get();
 
-        return view('about.data-about', compact('dataUser', 'dataAbout'));
+        return view('about.data-about', compact('dataUser', 'about'));
     }
     public function showAboutFormCreate()
     {
@@ -34,7 +34,7 @@ class AboutController extends Controller
             // Validasi input
             $validatedData = $request->validate([
                 'user_id' => 'required|exists:users,id',
-                'bio' => 'required|string',
+                'bio' => 'required',
                 'degree' => 'required|string',
                 'phone' => 'required|string',
                 'address' => 'required|string',
@@ -53,7 +53,7 @@ class AboutController extends Controller
             }
 
             // Simpan data ke database
-            $dataAbout = About::create($validatedData);
+            $about = About::create($validatedData);
 
             return redirect()->back()->with('success', 'Data about berhasil disimpan.');
         } catch (\Exception $e) {
@@ -64,9 +64,9 @@ class AboutController extends Controller
     {
         try {
             $dataUser = User::all();
-            $dataAbout = About::findOrFail($id);
+            $about = About::findOrFail($id);
 
-            return view('about.edit-data-about', compact('dataUser', 'dataAbout'));
+            return view('about.edit-data-about', compact('dataUser', 'about'));
         } catch (\Exception $e) {
             return redirect()->back()->withErrors('Terjadi kesalahan: ' . $e->getMessage());
         }
@@ -78,7 +78,7 @@ class AboutController extends Controller
             // Validasi input
             $validatedData = $request->validate([
                 'user_id' => 'required|exists:users,id',
-                'bio' => 'required|string',
+                'bio' => 'required',
                 'degree' => 'required|string',
                 'phone' => 'required|string',
                 'address' => 'required|string',
@@ -91,54 +91,54 @@ class AboutController extends Controller
 
             // Menangani upload gambar profil
             // Update data di database
-            $dataAbout = About::findOrFail($id);
+            $about = About::findOrFail($id);
 
             if ($request->hasFile('profile_picture')) {
 
-                if (!empty($dataAbout->profile_picture)) {
-                    Storage::disk('public')->delete($dataAbout->profile_picture);
+                if (!empty($about->profile_picture)) {
+                    Storage::disk('public')->delete($about->profile_picture);
                 }
                 $profilePicture = $request->file('profile_picture');
                 $profilePicturePath = $profilePicture->store('profile_pictures', 'public');
                 $validatedData['profile_picture'] = $profilePicturePath;
             }
 
-            $dataAbout->update($validatedData);
+            $about->update($validatedData);
 
             return redirect()->back()->with('success', 'Data about berhasil diperbarui.');
         } catch (\Exception $e) {
-            return redirect()->back()->withErrors('Terjadi kesalahan: ' . $e->getMessage());
+            return redirect()->back()->withErrors($e->getMessage());
         }
     }
 
     public function deleteDataAbout($id)
     {
-        $dataAbout = About::findByFail($id);
-        return view('about.delete-data-about', compact('dataAbout'));
+        $about = About::findByFail($id);
+        return view('about.delete-data-about', compact('about'));
     }
 
     public function confirmDeleteDataAbout($id)
     {
-        $dataAbout = About::findOrfail($id);
+        $about = About::findOrfail($id);
 
-        $dataAbout->delete();
+        $about->delete();
 
         return redirect()->back()->with('success', 'Berhasi menghapus Data About');
     }
 
-    public function dataSoftDeleteAbout()
-    {
-        $dataAbout = About::onlyTrashed()->orderBy('created_at', 'desc')->get();
-        $dataUser = User::all();
+    // public function dataSoftDeleteAbout()
+    // {
+    //     $dataUser = User::all();
+    //     $about = About::onlyTrashed()->orderBy('created_at', 'desc')->get();
 
-        return view('about.data-softdelete-about', compact('dataAbout', 'dataUser'));
-    }
+    //     return view('about.data-softdelete-about', compact('dataUser', 'about'));
+    // }
 
-    public function restoreDataSoftDeleteAbout($id)
-    {
-        $dataAbout = About::withTrashed()->findOrFail($id);
-        $dataAbout->restore();
+    // public function restoreDataSoftDeleteAbout($id)
+    // {
+    //     $about = About::withTrashed()->findOrFail($id);
+    //     $about->restore();
 
-        return redirect()->back()->with('success', 'Berhasil memulihkan data about');
-    }
+    //     return redirect()->back()->with('success', 'Berhasil memulihkan data about');
+    // }
 }

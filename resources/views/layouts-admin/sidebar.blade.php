@@ -1,102 +1,134 @@
-<aside class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 "
-    id="sidenav-main">
-    <div class="sidenav-header">
-        <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none"
-            aria-hidden="true" id="iconSidenav"></i>
-        <a class="navbar-brand m-0" href="{{ route('index') }}" target="_blank">
-            <img src="{{ asset('assets/admin/img/logo3.png') }}" class="navbar-brand-img h-100" alt="main_logo">
-            <span class="ms-1 font-weight-bold">Haerul Folio</span>
-        </a>
+<!-- partial:partials/_sidebar.html -->
+<nav class="sidebar sidebar-offcanvas" id="sidebar">
+    <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
+        <a class="sidebar-brand brand-logo" href="{{ route('index') }}" target="_blank"><img
+                src="{{ asset('assets/admin/images/logos.png') }}" alt="logo" /></a>
+        <a class="sidebar-brand brand-logo-mini" href="{{ route('index') }}" target="_blank"><img
+                src="{{ asset('assets/admin/images/logo-mini.png') }}" alt="logo" /></a>
     </div>
-    <hr class="horizontal dark mt-0">
-    <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
-        <ul class="navbar-nav">
-            <li class="nav-item">
-                <a href="{{ route('admin.dashboard') }}"
-                    class="nav-link {{ request()->routeIs(['admin.dashboard']) ? 'active' : '' }}">
-                    <div
-                        class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
-                    </div>
-                    <span class="nav-link-text ms-1">Dashboard</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="{{ route('about.data-about') }}"
-                    class="nav-link {{ request()->routeIs(['about.data-about', 'about.create-data-about', 'about.edit-data-about']) ? 'active' : '' }}">
-                    <div
-                        class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="ni ni-calendar-grid-58 text-warning text-sm opacity-10"></i>
-                    </div>
-                    <span class="nav-link-text ms-1">About</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="{{ route('service.data-services') }}"
-                    class="nav-link {{ request()->routeIs(['service.data-services', 'service.create-data-services', 'service.edit-data-services', 'service.delete-data-services']) ? 'active' : '' }}">
-                    <div
-                        class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="ni ni-credit-card text-success text-sm opacity-10"></i>
-                    </div>
-                    <span class="nav-link-text ms-1">Service</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="{{ route('education.data-education') }}"
-                    class="nav-link {{ request()->routeIs(['education.data-education', 'education.create-data-education', 'education.edit-data-education', 'education.delete-data-education']) }}">
-                    <div
-                        class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="ni ni-app text-info text-sm opacity-10"></i>
-                    </div>
-                    <span class="nav-link-text ms-1">Education</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="{{ route('experience.data-experiences') }}"
-                    class="nav-link {{ request()->routeIs(['experience.data-experiences', 'experience.create-data-experience', 'experience.edit-data-experience', 'experience.delete-data-experience']) }}">
-                    <div
-                        class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="ni ni-app text-info text-sm opacity-10"></i>
-                    </div>
-                    <span class="nav-link-text ms-1">Experience</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a
-                    href="{{ route('portfolio.data-portfolios') }}"class="nav-link {{ request()->routeIs(['portfolio.data-portfolios', 'portfolio.create-data-portfolio', 'portfolio.edit-data-portfolio']) ? 'active' : '' }}">
-                    <div
-                        class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="ni ni-world-2 text-danger text-sm opacity-10"></i>
-                    </div>
-                    <span class="nav-link-text ms-1">Portfolio</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a
-                    href="{{ route('skill.data-skills') }}"class="nav-link {{ request()->routeIs(['skill.data-skills', 'skill.create-data-skills', 'skill.edit-data-skill']) ? 'active' : '' }}">
-                    <div
-                        class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="ni ni-world-2 text-danger text-sm opacity-10"></i>
-                    </div>
-                    <span class="nav-link-text ms-1">Skill</span>
-                </a>
-            </li>
-            <li class="nav-item mt-3">
-                <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Auth</h6>
-            </li>
+    <ul class="nav">
+        <li class="nav-item profile">
+            <div class="profile-desc">
+                <div class="profile-pic">
+                    @if ($about)
+                        @foreach ($about as $item)
+                            <div class="count-indicator">
+                                <img class="img-xs rounded-circle"
+                                    src="{{ asset('storage/' . $item->profile_picture) }}" alt="Profile Picture">
+                                <span class="count bg-success"></span>
+                            </div>
+                            <div class="profile-name">
+                                <h5 class="mb-0 font-weight-normal">{{ $item->user->name }}</h5>
+                                <span>{{ $item->user->role->role_names }}</span>
+                            </div>
+                        @endforeach
+                    @else
+                        <div class="profile-name">
+                            <h5 class="mb-0 font-weight-normal">No User Data</h5>
+                        </div>
+                    @endif
+                </div>
+                <a href="#" id="profile-dropdown" data-bs-toggle="dropdown"><i
+                        class="mdi mdi-dots-vertical"></i></a>
+                <div class="dropdown-menu dropdown-menu-right sidebar-dropdown preview-list"
+                    aria-labelledby="profile-dropdown">
+                    <a href="#" class="dropdown-item preview-item">
+                        <div class="preview-thumbnail">
+                            <div class="preview-icon bg-dark rounded-circle">
+                                <i class="mdi mdi-onepassword  text-info"></i>
+                            </div>
+                        </div>
+                        <div class="preview-item-content">
+                            <p class="preview-subject ellipsis mb-1 text-small">Change Password</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </li>
+        <li class="nav-item nav-category">
+            <span class="nav-link">Navigation</span>
+        </li>
+        <li class="nav-item menu-items">
+            <a class="nav-link" href="{{ route('admin.dashboard') }}">
+                <span class="menu-icon">
+                    <i class="mdi mdi-speedometer"></i>
+                </span>
+                <span class="menu-title">Dashboard</span>
+            </a>
+        </li>
 
-            <li class="nav-item">
-                <a class="nav-link" href="#" onclick="confirmLogout(event)">
-                    <div
-                        class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="ni ni-button-power text-danger text-sm opacity-10"></i>
-                    </div>
-                    <span class="nav-link-text ms-1">Logout</span>
-                </a>
-            </li>
-            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                @csrf
-            </form>
-        </ul>
-    </div>
-</aside>
+        <li class="nav-item menu-items">
+            <a href="{{ route('about.data-about') }}"
+                class="nav-link {{ request()->routeIs(['about.create-data-about', 'about.edit-data-about', 'about.delete-data-about', 'about.data-softdelete-about']) ? 'active' : '' }}">
+                <span class="menu-icon">
+                    <i class="mdi mdi-account-box"></i>
+                </span>
+                <span class="menu-title">About</span>
+            </a>
+        </li>
+
+        <li class="nav-item menu-items">
+            <a href="{{ route('education.data-education') }}"
+                class="nav-link {{ request()->routeIs(['education.create-data-education', 'education.edit-data-education', 'education.delete-data-education', 'education.data-softdelete-education']) ? 'active' : '' }}">
+                <span class="menu-icon">
+                    <i class="mdi mdi-school"></i>
+                </span>
+                <span class="menu-title">Education</span>
+            </a>
+        </li>
+
+        <li class="nav-item menu-items">
+            <a href="{{ route('experience.data-experiences') }}"
+                class="nav-link {{ request()->routeIs(['experience.create-data-experience', 'experience.edit-data-experience', 'experience.delete-data-experience', 'experience.data-softdelete-experience']) ? 'active' : '' }}">
+                <span class="menu-icon">
+                    <i class="mdi mdi-briefcase"></i>
+                </span>
+                <span class="menu-title">Experience</span>
+            </a>
+        </li>
+
+        <li class="nav-item menu-items">
+            <a href="{{ route('service.data-services') }}"
+                class="nav-link {{ request()->routeIs(['service.create-data-services', 'service.edit-data-services', 'service.delete-data-services', 'service.data-softdelete-services']) ? 'active' : '' }}">
+                <span class="menu-icon">
+                    <i class="mdi mdi-wrench"></i>
+                </span>
+                <span class="menu-title">Service</span>
+            </a>
+        </li>
+
+        <li class="nav-item menu-items">
+            <a
+                href="{{ route('skill.data-skills') }}"class="nav-link {{ request()->routeIs(['skill.create-data-skills', 'skill.edit-data-skill', 'skill.delete-data-skill', 'skill.data-softdelete-skill']) ? 'active' : '' }}">
+                <span class="menu-icon">
+                    <i class="mdi mdi-format-line-style"></i>
+                </span>
+                <span class="menu-title">Skills</span>
+            </a>
+        </li>
+
+        <li class="nav-item menu-items">
+            <a
+                href="{{ route('portfolio.data-portfolios') }}"class="nav-link {{ request()->routeIs(['portfolio.create-data-portfolio', 'portfolio.edit-data-portfolio', 'portfolio.delete-data-portfolio', 'portfolio.data-softdelete-portfolio']) ? 'active' : '' }}">
+                <span class="menu-icon">
+                    <i class="mdi mdi-border-all"></i>
+                </span>
+                <span class="menu-title">Portfolio</span>
+            </a>
+        </li>
+
+        <div class="dropdown-divider"></div>
+
+        <li class="nav-item menu-items">
+            <a class="nav-link" href="#" onclick="confirmLogout(event)">
+                <span class="menu-icon">
+                    <i class="mdi mdi-logout-variant"></i>
+                </span>
+                <span class="menu-title">Logout</span>
+            </a>
+        </li>
+        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+            @csrf
+        </form>
+    </ul>
+</nav>

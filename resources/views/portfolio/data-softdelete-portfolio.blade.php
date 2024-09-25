@@ -1,16 +1,16 @@
 @extends('layouts-admin.main-layout')
 
-@section('title', 'Data Portfolios')
+@section('title', 'Data Portfolio Softdelete')
 
-@section('page-title', 'Data Portfolios')
+@section('page-title', 'Data Portfolio Softdelete')
 
 @section('content')
 
     <div class="row">
         <div class="col-12">
             <div class="card mb-4">
-                <div class="card-body pb-0">
-                    <a href="{{ route('portfolio.data-portfolios') }}" class="btn btn-primary">Data Portfolio</a>
+                <div class="card-body">
+                    <a href="{{ route('portfolio.data-portfolios') }}" class="btn btn-primary p-2">Data Portfolio</a>
                 </div>
             </div>
         </div>
@@ -20,11 +20,11 @@
         <div class="col-12">
             <div class="card mb-4">
                 <div class="card-header pb-0">
-                    <h6>Data Portfolios</h6>
+                    <h6>Data Portfolio Softdelete</h6>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table align-items-center" id="myData">
+                        <table class="table table-bordered bs-gray-dark text-white" id="datatable" style="width:100%;">
                             <thead>
                                 <tr>
                                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
@@ -46,18 +46,18 @@
                             <tbody>
                                 @forelse ($dataPortfolio as $portfolio)
                                     <tr>
-                                        <td class="text-secondary text-center font-weight-bold text-xs">
+                                        <td class="text-center">
                                             {{ $loop->iteration }}</td>
-                                        <td class="text-secondary font-weight-bold text-xs">
+                                        <td>
                                             {{ $portfolio->service->title }}
                                         </td>
-                                        <td class="text-secondary font-weight-bold text-xs">
+                                        <td>
                                             {{ $portfolio->title }}
                                         </td>
-                                        <td class="text-secondary font-weight-bold text-xs">
+                                        <td>
                                             {!! $portfolio->description !!}
                                         </td>
-                                        <td class="text-secondary font-weight-bold text-xs">
+                                        <td>
                                             {{ $portfolio->project_url }}
                                         </td>
 

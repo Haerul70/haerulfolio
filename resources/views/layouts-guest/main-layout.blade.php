@@ -18,7 +18,17 @@
 
     @include('layouts-guest.header')
 
-    @include('layouts-guest.content')
+    @include('about.about')
+
+    @include('quality.qualification')
+
+    @include('service.service')
+
+    @include('skill.skill')
+
+    @include('portfolio.portfolio')
+
+    @include('contact.contact')
 
     @include('layouts-guest.footer')
 

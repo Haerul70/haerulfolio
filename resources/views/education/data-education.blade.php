@@ -9,13 +9,13 @@
     <div class="row">
         <div class="col-12">
             <div class="card mb-4">
-                <div class="card-body pb-2">
+                <div class="card-body">
                     <!-- Button trigger modal -->
                     <div class="d-flex justify-content-start">
-                        <a href="{{ route('education.create-data-education') }}" class="btn btn-primary me-3"
+                        <a href="{{ route('education.create-data-education') }}" class="btn btn-primary p-2 me-3"
                             data-bs-toggle="modal" data-bs-target="#createDataEducationModal">Add New
                             Data</a>
-                        <a href="{{ route('education.data-softdelete-education') }}" class="btn btn-secondary">Data
+                        <a href="{{ route('education.data-softdelete-education') }}" class="btn btn-warning p-2">Data
                             SoftDelete</a>
                     </div>
                 </div>
@@ -31,22 +31,22 @@
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table align-items-center" id="myData">
+                        <table class="table table-bordered bs-gray-dark text-white" id="datatable" style="width:100%;">
                             <thead>
                                 <tr>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                    <th class="text-secondary text-xxs font-weight-bolder opacity-7">
                                         No.</th>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                    <th class="text-secondary text-xxs font-weight-bolder opacity-7">
                                         Major</th>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                    <th class="text-secondary text-xxs font-weight-bolder opacity-7">
                                         School Name</th>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                    <th class="text-secondary text-xxs font-weight-bolder opacity-7">
                                         Description</th>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                    <th class="text-secondary text-xxs font-weight-bolder opacity-7">
                                         Start Date</th>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                    <th class="text-secondary text-xxs font-weight-bolder opacity-7">
                                         End Date</th>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                    <th class="text-secondary text-xxs font-weight-bolder opacity-7">
                                         Aksi
                                     </th>
                                 </tr>
@@ -54,21 +54,21 @@
                             <tbody>
                                 @forelse ($dataEducation as $education)
                                     <tr>
-                                        <td class="text-secondary text-center font-weight-bold text-xs">
+                                        <td class="text-center">
                                             {{ $loop->iteration }}</td>
-                                        <td class="text-secondary font-weight-bold text-xs">
+                                        <td>
                                             {{ $education->major }}
                                         </td>
-                                        <td class="text-secondary font-weight-bold text-xs">
+                                        <td>
                                             {{ $education->school_name }}
                                         </td>
-                                        <td class="text-secondary font-weight-bold text-xs">
+                                        <td>
                                             {!! $education->description !!}
                                         </td>
-                                        <td class="text-secondary font-weight-bold text-xs">
+                                        <td>
                                             {{ \Carbon\Carbon::parse($education->start_date)->format('Y') }}
                                         </td>
-                                        <td class="text-secondary font-weight-bold text-xs">
+                                        <td>
                                             {{ \Carbon\Carbon::parse($education->end_date)->format('Y') }}
                                         </td>
                                         <td class="align-middle">

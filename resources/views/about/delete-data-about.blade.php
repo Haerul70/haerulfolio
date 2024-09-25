@@ -1,5 +1,5 @@
-<!-- Modal -->
-<div class="modal fade" id="deleteDataAboutModal_{{ $about->id }}" tabindex="-1"
+{{-- <!-- Modal -->
+<div class="modal fade" id="deleteDataAboutModal_{{ $item->id }}" tabindex="-1"
     aria-labelledby="deleteDataAboutModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-md" role="document">
         <div class="modal-content">
@@ -8,10 +8,10 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <p>Apa anda yakin ingin menghapus Data About {{ $about->title }} ?
+                <p>Apa anda yakin ingin menghapus Data About {{ $item->title }} ?
                 </p>
                 <div class="mt-5">
-                    <a href="{{ route('about.confirm-delete-data-about', ['id' => $about->id]) }}"
+                    <a href="{{ route('about.confirm-delete-data-about', ['id' => $item->id]) }}"
                         class="btn btn-danger">Yakin</a>
                 </div>
             </div>
@@ -20,4 +20,4 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}

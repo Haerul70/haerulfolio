@@ -22,14 +22,19 @@
      <div class="container">
          <div class="row align-items-center">
              <div class="col-lg-5 px-5 pl-lg-0 pb-5 pb-lg-0">
-                 <img class="img-fluid rounded-circle shadow-sm" src="{{ Storage::url($abouts->profile_picture) }}"
-                     alt="Profile Picture">
+                 @if (optional($abouts)->profile_picture && $abouts->profile_picture != '')
+                     <img class="img-fluid rounded-circle shadow-sm"
+                         src="{{ asset('storage/' . $abouts->profile_picture) }}" alt="Profile Picture">
+                 @else
+                     <img class="img-fluid rounded-circle shadow-sm"
+                         src="{{ asset('assets/guest/img/default-image.jpg') }}" alt="Foto Default"
+                         class="avatar avatar-sm me-3">
+                 @endif
              </div>
              <div class="col-lg-7 text-center text-lg-left">
                  <h3 class="text-white font-weight-normal mb-3">I'm</h3>
                  <h1 class="display-4 text-uppercase text-primary mb-2" style="-webkit-text-stroke: 2px #ffffff;">
-
-                     {{ $abouts->user->name }}
+                     {{ optional(optional($abouts)->user)->name ?? 'Name not available' }}
                  </h1>
                  <h1 class="typed-text-output d-inline font-weight-lighter text-white"></h1>
                  <div class="typed-text d-none">

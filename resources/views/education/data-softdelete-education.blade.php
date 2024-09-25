@@ -1,18 +1,18 @@
 @extends('layouts-admin.main-layout')
 
-@section('title', 'Data Education')
+@section('title', 'Data Education Softdelete')
 
-@section('page-title', 'Data Education')
+@section('page-title', 'Data Education Softdelete')
 
 @section('content')
 
     <div class="row">
         <div class="col-12">
             <div class="card mb-4">
-                <div class="card-body pb-2">
+                <div class="card-body">
                     <!-- Button trigger modal -->
                     <div class="d-flex justify-content-start">
-                        <a href="{{ route('education.data-education') }}" class="btn btn-primary">Data Education</a>
+                        <a href="{{ route('education.data-education') }}" class="btn btn-primary p-2">Data Education</a>
                     </div>
                 </div>
             </div>
@@ -23,48 +23,48 @@
         <div class="col-12">
             <div class="card mb-4">
                 <div class="card-header pb-0">
-                    <h6>Data Educatios</h6>
+                    <h6>Data Education Softdelete</h6>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table align-items-center" id="myData">
+                        <table class="table table-bordered bs-gray-dark text-white" id="datatable" style="width:100%;">
                             <thead>
                                 <tr>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                    <th class="text-secondary text-xxs font-weight-bolder opacity-7">
                                         No.</th>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                    <th class="text-secondary text-xxs font-weight-bolder opacity-7">
                                         Major</th>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                    <th class="text-secondary text-xxs font-weight-bolder opacity-7">
                                         School Name</th>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                    <th class="text-secondary text-xxs font-weight-bolder opacity-7">
                                         Description</th>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                    <th class="text-secondary text-xxs font-weight-bolder opacity-7">
                                         Start Date</th>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                    <th class="text-secondary text-xxs font-weight-bolder opacity-7">
                                         End Date</th>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                    <th class="text-secondary text-xxs font-weight-bolder opacity-7">
                                         Aksi
                                     </th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse ($dataExperience as $education)
+                                @forelse ($dataEducation as $education)
                                     <tr>
-                                        <td class="text-secondary text-center font-weight-bold text-xs">
+                                        <td class="text-center">
                                             {{ $loop->iteration }}</td>
-                                        <td class="text-secondary font-weight-bold text-xs">
+                                        <td>
                                             {{ $education->major }}
                                         </td>
-                                        <td class="text-secondary font-weight-bold text-xs">
+                                        <td>
                                             {{ $education->school_name }}
                                         </td>
-                                        <td class="text-secondary font-weight-bold text-xs">
+                                        <td>
                                             {{ strip_tags($education->description) }}
                                         </td>
-                                        <td class="text-secondary font-weight-bold text-xs">
+                                        <td>
                                             {{ $education->start_date }}
                                         </td>
-                                        <td class="text-secondary font-weight-bold text-xs">
+                                        <td>
                                             {{ $education->end_date }}
                                         </td>
                                         <td class="align-middle">

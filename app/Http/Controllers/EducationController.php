@@ -10,7 +10,6 @@ class EducationController extends Controller
     public function showDataEducation()
     {
         $dataEducation = Education::orderBy('created_at', 'desc')->get();
-
         return view('education.data-education', compact('dataEducation'));
     }
 
@@ -65,5 +64,21 @@ class EducationController extends Controller
         } catch (\Exception $e) {
             return redirect()->back()->withErrors('Terjadi Kesalahan: ' . $e->getMessage());
         }
+    }
+
+    public function dataSoftDeleteEducation()
+    {
+        $dataEducation = Education::onlyTrashed()->orderBy('created_at', 'desc')->get();
+
+        return view('Education.data-softdelete-education', compact('dataEducation'));
+    }
+
+    public function restoreDataSoftDeleteEducation($id)
+    {
+        $dataEducation = Education::withTrashed()->findOrFail($id);
+
+        $dataEducation->restore();
+
+        return redirect()->back()->with('success', 'Berhasil memulihkan data Education');
     }
 }

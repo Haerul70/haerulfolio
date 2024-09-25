@@ -20,18 +20,28 @@
                 <div
                     class="col-lg-4 col-md-6 mb-4 portfolio-item {{ $portfolio->service_id == 5 ? 'first' : ($portfolio->service_id == 3 ? 'second' : 'third') }}">
                     <div class="position-relative overflow-hidden mb-2">
-                        <img class="img-fluid rounded w-100" src="{{ Storage::url($portfolio->image_url) }}"
-                            alt="Portfolio Image">
+                        @if ($portfolio->image_url && $portfolio->image_url != '')
+                            <img class="img-fluid rounded w-100" src="{{ asset('storage/' . $portfolio->image_url) }}"
+                                alt="Portfolio Image">
+                        @else
+                            <img class="img-fluid shadow-sm" src="{{ asset('assets/guest/img/default-image.jpg') }}"
+                                alt="Foto Default" class="avatar avatar-sm me-3">
+                        @endif
                         <div class="portfolio-btn bg-primary d-flex align-items-center justify-content-center">
                             <!-- Link ke website -->
                             <a href="{{ $portfolio->project_url }}" target="_blank" title="Visit Project">
                                 <i class="fa fa-solid fa-link icon-portfolio"></i></a>
 
                             <!--Zoom In-->
-                            <a href="{{ Storage::url($portfolio->image_url) }}"title="{{ $portfolio->title }}"
-                                data-lightbox="portfolio">
-                                <i class="fa fa-plus icon-portfolio" title="Zoom In"></i></a>
-
+                            @if ($portfolio->image_url && $portfolio->image_url != '')
+                                <a href="{{ asset('storage/' . $portfolio->image_url) }}"title="{{ $portfolio->title }}"
+                                    data-lightbox="portfolio">
+                                    <i class="fa fa-plus icon-portfolio" title="Zoom In"></i></a>
+                            @else
+                                <a href="{{ asset('assets/guest/img/default-image.jpg') }}" title="Default Image"
+                                    data-lightbox="portfolio">
+                                    <i class="fa fa-plus icon-portfolio" title="Zoom In"></i></a>
+                            @endif
                         </div>
                     </div>
                 </div>

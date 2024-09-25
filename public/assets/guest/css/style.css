@@ -10036,3 +10036,28 @@ h6,
   text-decoration: none;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
 }
+
+.card {
+  /* Shadow efek */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  /* Lainnya */
+  border-radius: 8px;
+  border:none;
+  background: #fff;
+  transition: all 0.3s ease-in-out;
+  /* Set jarak dan align center */
+  margin: 10px;
+  transform: translateY(0);
+  /* Posisi awal */
+}
+
+.card:hover {
+  /* Shadow efek saat hover */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  transform: translateY(-10px);
+  /* Mengangkat card */
+}
+
+.card-body {
+  padding: 20px;
+}

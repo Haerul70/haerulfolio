@@ -9,6 +9,7 @@ use App\Http\Controllers\IndexController;
 use App\Http\Controllers\SkillController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\VisitorController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EducationController;
 use App\Http\Controllers\PortfolioController;
@@ -25,7 +26,7 @@ use App\Http\Controllers\ExperienceController;
 |
 */
 
-Route::get('/index', [IndexController::class, 'showHome'])->name('index');
+Route::get('/', [IndexController::class, 'showHome'])->name('index');
 
 Route::middleware('only_guest')->group(
     function () {
@@ -42,6 +43,7 @@ Route::middleware('auth')->group(function () {
 
         Route::prefix('admin')->group(function () {
             Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
+            Route::get('/get-visitor-data', [VisitorController::class, 'getVisitorData']);
         });
 
         //About Routes
@@ -51,10 +53,10 @@ Route::middleware('auth')->group(function () {
             Route::post('/store-data-about', [AboutController::class, 'saveAddDataAbout'])->name('about.store-data-about');
             Route::get('/{id}/edit-data-about', [AboutController::class, 'showAboutFormEdit'])->name('about.edit-data-about');
             Route::post('/{id}/update-data-about', [AboutController::class, 'updateAboutData'])->name('about.update-data-about');
-            Route::post('/{id}/delete-data-about', [AboutController::class, 'deleteDataAbout'])->name('about.delete-data-about');
-            Route::get('/{id}/confirm-delete-data-about', [AboutController::class, 'confirmDeleteDataAbout'])->name('about.confirm-delete-data-about');
-            Route::get('/data-softdelete-about', [AboutController::class, 'dataSoftDeleteAbout'])->name('about.data-softdelete-about');
-            Route::get('/{id}/restore-data-softdelete-about', [AboutController::class, 'restoreDataSoftDeleteAbout'])->name('about.restore-data-softdelete-about');
+            // Route::post('/{id}/delete-data-about', [AboutController::class, 'deleteDataAbout'])->name('about.delete-data-about');
+            // Route::get('/{id}/confirm-delete-data-about', [AboutController::class, 'confirmDeleteDataAbout'])->name('about.confirm-delete-data-about');
+            // Route::get('/data-softdelete-about', [AboutController::class, 'dataSoftDeleteAbout'])->name('about.data-softdelete-about');
+            // Route::get('/{id}/restore-data-softdelete-about', [AboutController::class, 'restoreDataSoftDeleteAbout'])->name('about.restore-data-softdelete-about');
         });
 
         //Skill Routes

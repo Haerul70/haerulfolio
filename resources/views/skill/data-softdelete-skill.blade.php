@@ -1,17 +1,16 @@
 @extends('layouts-admin.main-layout')
 
-@section('title', 'Data Skill')
+@section('title', 'Data Skill Softdelete')
 
-@section('page-title', 'Data Skill')
+@section('page-title', 'Data Skill Softdelete')
 
 @section('content')
 
     <div class="row">
         <div class="col-12">
             <div class="card mb-4">
-                <div class="card-body pb-2">
-                    <!-- Button trigger modal -->
-                    <a href="{{ route('skill.data-skills') }}" class="btn btn-primary">Data Skill</a>
+                <div class="card-body">
+                    <a href="{{ route('skill.data-skills') }}" class="btn btn-primary p-2">Data Skill</a>
                 </div>
             </div>
         </div>
@@ -21,16 +20,16 @@
         <div class="col-12">
             <div class="card mb-4">
                 <div class="card-header pb-0">
-                    <h6>Data Skills</h6>
+                    <h6>Data Skill Softdelete</h6>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table align-items-center" id="myData">
+                        <table class="table table-bordered bs-gray-dark text-white" id="datatable" style="width:100%;">
                             <thead>
                                 <tr>
                                     <th
                                         class="text-uppercase text-center text-secondary text-xxs font-weight-bolder opacity-7">
-                                        No.</th>
+                                        NO.</th>
                                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                         Skill Type</th>
                                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
@@ -43,12 +42,11 @@
                             <tbody>
                                 @forelse ($dataSkill as $skill)
                                     <tr>
-                                        <td class="text-secondary text-center font-weight-bold text-xs">
+                                        <td class="text-center">
                                             {{ $loop->iteration }}</td>
-                                        <td class="text-secondary font-weight-medium text-xs">
+                                        <td>
                                             {{ $skill->skills_type->type }}
-                                        </td>
-                                        <td class="text-secondary font-weight-medium text-xs">
+                                        <td>
                                             {{ $skill->title }}
                                         </td>
                                         <td class="align-middle">

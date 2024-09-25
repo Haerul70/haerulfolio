@@ -1,18 +1,18 @@
-@extends('layouts-admin.main-layout')
+{{-- @extends('layouts-admin.main-layout')
 
-@section('title', 'About Data')
+@section('title', 'Data About Softdelete')
 
-@section('page-title', 'About Data')
+@section('page-title', 'Data About Softdelete')
 
 @section('content')
 
     <div class="row">
         <div class="col-12">
             <div class="card mb-4">
-                <div class="card-body pb-2">
+                <div class="card-body">
                     <!-- Button trigger modal -->
                     <div class="d-flex justify-content-start">
-                        <a href="{{ route('about.data-about') }}" class="btn btn-primary me-3">Data About</a>
+                        <a href="{{ route('about.data-about') }}" class="btn btn-primary p-2 me-3">Data About</a>
                     </div>
                 </div>
             </div>
@@ -23,11 +23,11 @@
         <div class="col-12">
             <div class="card mb-4">
                 <div class="card-header pb-0">
-                    <h6>Data About Me</h6>
+                    <h6>Data About Sotft Delete</h6>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table align-items-center" id="myData">
+                        <table class="table table-bordered bs-gray-dark text-white" id="datatable" style="width:100%;">
                             <thead>
                                 <tr>
                                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
@@ -58,41 +58,41 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse ($dataAbout as $about)
+                                @forelse ($about as $item)
                                     <tr>
-                                        <td class="text-secondary text-center font-weight-bold text-xs">
+                                        <td class="text-center">
                                             {{ $loop->iteration }}
                                         </td>
-                                        <td class="text-secondary font-weight-bold text-xs ps-4">
-                                            {{ $about->user->name }}
-                                        </td>
-                                        <td class="text-secondary font-weight-medium text-xs">
-                                            {{ strip_tags($about->bio) }}
-                                        </td>
-                                        <td class="text-secondary font-weight-medium text-xs">
-                                            {{ $about->degree }}
-                                        </td>
-                                        <td class="text-secondary font-weight-medium text-xs">
-                                            {{ $about->phone }}
-                                        </td>
-                                        <td class="text-secondary font-weight-medium text-xs">
-                                            {{ strip_tags($about->address) }}
-                                        </td>
-                                        <td class="text-secondary font-weight-medium text-xs">
-                                            {{ $about->city }}
-                                        </td>
-                                        <td class="text-secondary font-weight-medium text-xs">
-                                            {{ $about->country }}
-                                        </td>
-                                        <td class="text-secondary font-weight-medium text-xs">
-                                            {{ $about->birthday }}
-                                        </td>
-                                        <td class="text-secondary font-weight-medium text-xs">
-                                            {{ $about->email }}
+                                        <td>
+                                            {{ $item->user->name }}
                                         </td>
                                         <td>
-                                            @if ($about->profile_picture && $about->profile_picture != '')
-                                                <img src="{{ asset('storage/' . $about->profile_picture) }}"
+                                            {{ strip_tags($item->bio) }}
+                                        </td>
+                                        <td>
+                                            {{ $item->degree }}
+                                        </td>
+                                        <td>
+                                            {{ $item->phone }}
+                                        </td>
+                                        <td>
+                                            {{ strip_tags($item->address) }}
+                                        </td>
+                                        <td>
+                                            {{ $item->city }}
+                                        </td>
+                                        <td>
+                                            {{ $item->country }}
+                                        </td>
+                                        <td>
+                                            {{ $item->birthday }}
+                                        </td>
+                                        <td>
+                                            {{ $item->email }}
+                                        </td>
+                                        <td>
+                                            @if ($item->profile_picture && $item->profile_picture != '')
+                                                <img src="{{ asset('storage/' . $item->profile_picture) }}"
                                                     alt="Foto Profil" class="avatar avatar-sm me-3">
                                             @else
                                                 <img src="{{ asset('assets/admin/img/default-img.png') }}"
@@ -100,10 +100,10 @@
                                             @endif
                                         </td>
                                         <td class="align-middle">
-                                            <a href="{{ route('about.restore-data-softdelete-about', ['id' => $about->id]) }}"
+                                            <a href="{{ route('about.restore-data-softdelete-about', ['id' => $item->id]) }}"
                                                 class="text-white font-weight-bold text-xs badge badge-sm bg-warning"
                                                 data-bs-toggle="modal"
-                                                data-bs-target="#restoreDataSoftDeleteAboutModal_{{ $about->id }}">
+                                                data-bs-target="#restoreDataSoftDeleteAboutModal_{{ $item->id }}">
                                                 Restore
                                             </a>
                                         </td>
@@ -119,8 +119,8 @@
         </div>
     </div>
 
-    @foreach ($dataAbout as $about)
+    @foreach ($about as $item)
         @include('about.restore-modal')
     @endforeach
 
-@endsection
+@endsection --}}

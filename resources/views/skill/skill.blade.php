@@ -8,7 +8,7 @@
          <div class="row align-items-between">
 
              <div class="col-md-4 mt-4">
-                 <h3 class="mb-4">Technical Skills</h3>
+                 <h3 class="mb-4">Hard Skills</h3>
                  <div class="border-left border-primary pt-2 pl-4 ml-2">
                      <div class="skills-container">
                          <div class="skills-column">
@@ -38,7 +38,7 @@
              </div>
 
              <div class="col-md-4 mt-4">
-                 <h3 class="mb-4">Non Technical Skills</h3>
+                 <h3 class="mb-4">Soft Skills</h3>
                  <div class="border-left border-primary pt-2 pl-4 ml-2">
                      <div class="skills-container">
                          <div class="skills-column">
